@@ -3,15 +3,14 @@
 /**
  * DOTTI Deeplink PRODUCT PAGE SECTION INVENTORY
  * =============================================
- * 1. ProductHero_DottiDeepLink - <ProductHero /> + inline CTAs (unique to this page)
- * 2. Product_EndOfAnonymousTraffic - <PageSection /> centered text only
- * 3. Product_ThreePillars - <PageSection /> with 3-column FeatureList
- * 4. Product_DataComparisonTable - <PageSection /> with custom data table (UNIQUE)
- * 5. Product_IdentityDrivenOrchestration - <SplitSection /> (image-right)
- * 6. Product_PrivacyFirstGovernance - <SplitSection /> (image-left)
- * 7. Product_CRMIntegration - <PageSection /> with logo pills
- * 8. Shared_FooterCTA - <FooterCTA />
- * 9. SiteFooter_NavAndMeta - <Footer />
+ * 1. ProductHero_DottiDeepLink - Centered hero + inline CTAs (unique to this page)
+ * 2. Product_EndOfAnonymousTraffic - <SplitSection /> (image-right, muted) with 5 bullets
+ * 3. Product_DataComparisonTable - <PageSection /> with custom data table (UNIQUE)
+ * 4. Product_AutonomousIdentityProtocols - <SplitSection /> (image-left, muted) with 4 bullets
+ * 5. Product_PrivacyFirstGovernance - <SplitSection /> (image-right, white) with 5 bullets
+ * 6. Product_CRMIntegration - <PageSection /> with text blocks + logo pills
+ * 7. Shared_FooterCTA - <FooterCTA /> with trust line
+ * 8. SiteFooter_NavAndMeta - <Footer />
  */
 
 import React from 'react';
@@ -21,7 +20,6 @@ import { Footer } from '@/components/Footer';
 import { SplitSection, FeatureItem } from '@/components/layout/SplitSection';
 import { PageSection } from '@/components/layout/PageSection';
 import { FeatureList } from '@/components/layout/FeatureList';
-import { FooterCTA } from '@/components/content/FooterCTA';
 import { Button } from '@/components/ui/Button';
 
 export default function DottiDeepLinkPage() {
@@ -111,28 +109,25 @@ export default function DottiDeepLinkPage() {
       {/* SECTION 1: THE END OF ANONYMOUS TRAFFIC */}
       <EndOfAnonymousTrafficSection />
       
-      {/* SECTION 2: THE THREE PILLARS */}
-      <ThreePillarsSection />
-      
-      {/* SECTION 3: DATA COMPARISON TABLE */}
+      {/* SECTION 2: DATA COMPARISON TABLE */}
       <DataComparisonTableSection />
       
-      {/* SECTION 4: IDENTITY-DRIVEN ORCHESTRATION */}
-      <IdentityDrivenOrchestrationSection />
+      {/* SECTION 3: AUTONOMOUS IDENTITY PROTOCOLS */}
+      <AutonomousIdentityProtocolsSection />
       
-      {/* SECTION 5: PRIVACY-FIRST DATA GOVERNANCE */}
+      {/* SECTION 4: PRIVACY-FIRST DATA GOVERNANCE */}
       <PrivacyFirstGovernanceSection />
       
-      {/* SECTION 6: SEAMLESS CRM INTEGRATION */}
+      {/* SECTION 5: FRICTIONLESS STACK INTEGRATION */}
       <CRMIntegrationSection />
       
       {/* FOOTER CTA */}
-      <FooterCTA
+      <FooterCTAWithTrustLine
         title="Stop Guessing. Start Identifying."
-        subtitle="Give your AI agents the data they need to be dangerous."
-        primaryLabel="Activate DeepLink™ Now"
+        subtitle="Give your autonomous agents the data they need to be dangerous."
+        primaryLabel="Activate Dotti DeepLink Resolution"
         primaryHref="/request-a-demo"
-        secondaryLabel="Talk to a Data Expert"
+        secondaryLabel="Get a Free Data Sample"
         secondaryHref="/request-a-demo"
       />
       
@@ -143,113 +138,85 @@ export default function DottiDeepLinkPage() {
 
 // SECTION 1: THE END OF ANONYMOUS TRAFFIC
 function EndOfAnonymousTrafficSection() {
-  return (
-    <PageSection background="light" padding="default">
-      <div className="text-center mx-auto" style={{ maxWidth: '700px' }}>
-        <h2
-          className="font-heading mb-4 text-center"
-          style={{
-            fontSize: 'clamp(36px, 3vw, 40px)',
-            fontWeight: 300,
-            color: '#1B1340',
-          }}
-          data-aos="fade-up"
-        >
-          The End of Anonymous Traffic
-        </h2>
-        <p
-          className="text-base text-slate-600 font-sans leading-normal font-normal"
-          style={{ lineHeight: '1.6', fontSize: '16px' }}
-          data-aos="fade-up"
-          data-aos-delay="100"
-        >
-          Most websites only know visitors by IP address. Dotti DeepLink™ changes the equation by identifying the human behind the screen.
-        </p>
-      </div>
-    </PageSection>
-  );
-}
-
-// SECTION 2: THE THREE PILLARS OF DOTTI INTELLIGENCE
-function ThreePillarsSection() {
-  const pillars: FeatureItem[] = [
+  const features: FeatureItem[] = [
     {
-      title: 'DeepLink™ Enrichment',
-      body: 'Instant access to 2,000+ verified attributes: net worth, credit intent, and lifestyle affinities.',
+      title: 'Instant Reverse-Append Logic',
+      body: 'The moment a user provides a single contact point (Email or Phone) or lands on a tracked gateway, the Dotti automatically populates missing CRM fields with verified 3rd-party data.',
     },
     {
-      title: 'Historical Memory',
-      body: 'Auto cross-references your database to recognize returning buyers and past interactions instantly.',
+      title: 'Surgical Identity Resolution',
+      body: 'Segment and prioritize your traffic using up to 2,000+ objective data markers, including Demographics (Age/Gender), Geographic (Precision Location), Financial Attributes (Net Worth/HHI), Credit Intent, Property Data, Professional Profiles, and Lifestyle Affinities (Interests/Hobbies).',
     },
     {
-      title: 'Digital Body Language',
-      body: 'Track real-time user paths to understand the &apos;Why&apos; behind visits and identify high-intent behaviors.',
+      title: 'Verified Lifestyle Affinities',
+      body: 'Identify the prospect\'s real-world behaviors -- from boat ownership and frequent travel to specific tech enthusiast triggers, for hyper-accurate marketing orchestration.',
+    },
+    {
+      title: 'Digital Body Language Mapping',
+      body: 'Track real-time user paths and pixel data to distinguish between \'casual browsing\' and \'high-intent buying\' behaviors, allowing the engine to prioritize the most valuable leads.',
+    },
+    {
+      title: 'Historical Database Synchronization',
+      body: 'DeepLink cross-references your internal records in real-time to recognize returning buyers and past interactions, ensuring context is never lost.',
     },
   ];
 
+  const visualCard = (
+    <div
+      className="w-full bg-gradient-to-br from-[#383299]/5 to-[#ef2d60]/5 rounded-xl flex items-center justify-center text-slate-400 font-sans text-sm"
+      style={{
+        minHeight: '500px',
+        borderRadius: '12px',
+        boxShadow: '0 2px 8px rgba(0, 0, 0, 0.08)',
+      }}
+    >
+      {/* TODO: Replace placeholder visual card with Orchestration Flow Visual */}
+      Orchestration Flow Visual
+    </div>
+  );
+
   return (
-    <PageSection background="muted" padding="default">
-      <div className="text-center mb-12">
-        <h2
-          className="font-heading mb-4 text-center"
-          style={{
-            fontSize: 'clamp(36px, 3vw, 40px)',
-            fontWeight: 300,
-            color: '#1B1340',
-          }}
-          data-aos="fade-up"
-        >
-          The Three Pillars of Dotti Intelligence
-        </h2>
-      </div>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-        {pillars.map((pillar, index) => (
-          <div
-            key={index}
-            className="text-center"
-            data-aos="fade-up"
-            data-aos-delay={200 + (index * 100)}
-          >
-            <h3 className="text-base font-heading font-medium text-slate-700 mb-2" style={{ fontSize: '16px', fontWeight: 600 }}>
-              {pillar.title}
-            </h3>
-            <p className="text-sm text-slate-600 leading-normal font-sans font-normal" style={{ fontSize: '16px', lineHeight: '1.6' }}>
-              {pillar.body}
-            </p>
-          </div>
-        ))}
-      </div>
-    </PageSection>
+    <SplitSection
+      title="The End of Anonymous Traffic"
+      subtitle="Most platforms only see IP addresses. Dotti DeepLink identifies the human behind the screen, transforming raw traffic into enriched, high-fidelity prospect profiles."
+      features={features}
+      side="image-right"
+      background="muted"
+      titleWeight={300}
+    >
+      {visualCard}
+    </SplitSection>
   );
 }
 
-// SECTION 3: DATA COMPARISON TABLE (UNIQUE TO THIS PAGE)
+
+// SECTION 2: DATA COMPARISON TABLE (UNIQUE TO THIS PAGE)
 function DataComparisonTableSection() {
   const tableData = [
     {
-      youKnow: 'Anonymous User',
-      dottiReveals: '$2.5M Net Worth / Avid Golfer',
-      resultingAction: 'Matti displays &apos;Golf Vacation&apos; creative',
+      resolvedProfile: 'Anonymous User',
+      identifiedAttribute: '$2.5M Net Worth / Avid Golfer',
+      autonomousExecution: 'Matti displays "Luxury Golf Resort" creative',
     },
     {
-      youKnow: 'New Lead',
-      dottiReveals: '45-54 Age Group / High Credit Score',
-      resultingAction: 'Chatti offers premium financing options',
+      resolvedProfile: 'New Lead',
+      identifiedAttribute: '750+ Credit Score',
+      autonomousExecution: 'Chatti offers premium financing or VIP tiering',
     },
     {
-      youKnow: 'Returning Visitor',
-      dottiReveals: 'Past Purchase: Luxury SUV',
-      resultingAction: 'Omni triggers a VIP concierge text',
+      resolvedProfile: 'Returning Visitor',
+      identifiedAttribute: 'Past Purchase: Luxury SUV',
+      autonomousExecution: 'Omni triggers a personalized concierge SMS',
     },
     {
-      youKnow: 'Abandoned Cart',
-      dottiReveals: 'Hispanic / Bilingual',
-      resultingAction: 'Chatti engages in Spanish automatically',
+      resolvedProfile: 'Abandoned Cart',
+      identifiedAttribute: 'Primary Language: Spanish',
+      autonomousExecution: 'Chatti re-engages in Spanish automatically',
     },
   ];
 
   return (
-    <PageSection background="muted" padding="default">
+    <PageSection background="light" padding="default">
       <div className="text-center mb-12">
         <h2
           className="font-heading mb-4 text-center"
@@ -260,7 +227,7 @@ function DataComparisonTableSection() {
           }}
           data-aos="fade-up"
         >
-          Surgical Data for the &apos;Segment of One&apos;
+          Conversion Blueprints: Data-Driven Orchestration
         </h2>
         <p
           className="text-base text-slate-600 max-w-2xl mx-auto font-sans leading-normal font-normal"
@@ -268,7 +235,7 @@ function DataComparisonTableSection() {
           data-aos="fade-up"
           data-aos-delay="100"
         >
-          Dotti doesn&apos;t just collect data—she feeds the Boardroom so Matti changes imagery and Chatti pivots her sales script.
+          Dotti doesn&apos;t just collect data. She provides the &apos;Grounded Intelligence&apos; that allows Maestri, Chatti, Matti and Omni to pivot their execution with mathematical precision.
         </p>
       </div>
       
@@ -294,7 +261,7 @@ function DataComparisonTableSection() {
                   fontWeight: 600,
                 }}
               >
-                You Know This
+                The Resolved Profile
               </th>
               <th
                 className="text-left font-heading font-semibold"
@@ -304,7 +271,7 @@ function DataComparisonTableSection() {
                   fontWeight: 600,
                 }}
               >
-                Dotti Reveals This
+                Identified Attribute
               </th>
               <th
                 className="text-left font-heading font-semibold"
@@ -314,7 +281,7 @@ function DataComparisonTableSection() {
                   fontWeight: 600,
                 }}
               >
-                The Resulting Action
+                Autonomous Execution
               </th>
             </tr>
           </thead>
@@ -334,7 +301,7 @@ function DataComparisonTableSection() {
                     fontWeight: 500,
                   }}
                 >
-                  {row.youKnow}
+                  {row.resolvedProfile}
                 </td>
                 <td
                   className="font-sans font-normal text-slate-600"
@@ -344,7 +311,7 @@ function DataComparisonTableSection() {
                     lineHeight: '1.6',
                   }}
                 >
-                  {row.dottiReveals}
+                  {row.identifiedAttribute}
                 </td>
                 <td
                   className="font-sans font-normal text-slate-600"
@@ -354,7 +321,7 @@ function DataComparisonTableSection() {
                     lineHeight: '1.6',
                   }}
                 >
-                  {row.resultingAction}
+                  {row.autonomousExecution}
                 </td>
               </tr>
             ))}
@@ -365,24 +332,24 @@ function DataComparisonTableSection() {
   );
 }
 
-// SECTION 4: IDENTITY-DRIVEN ORCHESTRATION
-function IdentityDrivenOrchestrationSection() {
+// SECTION 3: AUTONOMOUS IDENTITY PROTOCOLS
+function AutonomousIdentityProtocolsSection() {
   const features: FeatureItem[] = [
     {
-      title: 'Instant Reverse-Append',
-      body: 'When a user provides an email, phone, or lands on a tracked page, Dotti fills in CRM blanks automatically.',
+      title: 'The Eyes of the Ecosystem',
+      body: 'Without Dotti, AI is forced to guess. With Dotti, every conversation is grounded in the prospect\'s real-world profile.',
     },
     {
-      title: 'Verified Affinities',
-      body: 'Know if your prospect is a boat owner, frequent traveler, or tech enthusiast. Lifestyle Triggers for spot-on marketing.',
+      title: 'Predictive Lead Scoring',
+      body: 'Dotti analyzes the user path to determine \'Lead Velocity.\' High-value profiles are instantly flagged for Maestri to prioritize and escalate for human intervention.',
     },
     {
-      title: 'Financial Clarity',
-      body: 'Segment traffic by household income, home value, or discretionary spending capacity.',
+      title: 'Surgical CRM Mapping',
+      body: 'No manual data entry. Every attribute resolved by Dotti; from home value to household composition, maps directly to the corresponding fields in Salesforce, HubSpot, ZohoCRM, GoHighLevel or your legacy CRM.',
     },
     {
-      title: 'Predictive Intent',
-      body: 'Dotti analyzes the User Path to determine browsing vs. buying, allowing Maestri to prioritize high-value leads.',
+      title: 'Identity-Driven Orchestration',
+      body: 'Dotti provides the foundational data layer that allows the platform to move from generic automation to personalized, high-fidelity sales experiences.',
     },
   ];
 
@@ -395,18 +362,18 @@ function IdentityDrivenOrchestrationSection() {
         boxShadow: '0 2px 8px rgba(0, 0, 0, 0.08)',
       }}
     >
-      {/* TODO: Replace placeholder visual card with Orchestration Flow Visual */}
-      Orchestration Flow Visual
+      {/* TODO: Replace placeholder visual card with Identity Orchestration Visual */}
+      Identity Orchestration Visual
     </div>
   );
 
   return (
     <SplitSection
-      title="Identity-Driven Orchestration"
-      subtitle="Dotti is the eyes of the ecosystem. Without her, AI guesses. With her, every node becomes precise."
+      title="Autonomous Identity Protocols"
+      subtitle="The technical foundation that ensures every interaction in the ecosystem is fueled by precision, not guesswork."
       features={features}
-      side="image-right"
-      background="light"
+      side="image-left"
+      background="muted"
       titleWeight={300}
     >
       {visualCard}
@@ -414,20 +381,28 @@ function IdentityDrivenOrchestrationSection() {
   );
 }
 
-// SECTION 5: PRIVACY-FIRST DATA GOVERNANCE
+// SECTION 4: PRIVACY-FIRST DATA GOVERNANCE
 function PrivacyFirstGovernanceSection() {
   const features: FeatureItem[] = [
     {
-      title: 'CCPA & GDPR Compliant',
-      body: 'Data sourcing and processing meet the strictest global privacy standards.',
+      title: 'Audited Security Standards',
+      body: 'ChattiLive is SOC2 Type II certified and is currently in progress with ISO 42001 certification. These protocols ensure that our AI management systems and data handling processes meet the highest global standards for security and ethics.',
+    },
+    {
+      title: 'Regulatory Compliance Engineering',
+      body: 'Dotti is designed to operate in a \'Consent-First\' environment. The engine integrates with your Consent Management Platform (CMP) to ensure resolution and tracking protocols only activate upon verified user opt-in, mitigating risks associated with CIPA and regional wiretapping statutes.',
+    },
+    {
+      title: 'Dynamic Data Suppression',
+      body: 'The system features \'No-Track\' zone configurations. You can suppress identity resolution on sensitive URLs (e.g., checkout pages, HIPAA-regulated portals, or specific geographic regions) to ensure total alignment with your legal risk profile.',
+    },
+    {
+      title: 'CCPA & GDPR Compliance',
+      body: 'All identity resolution and data sourcing protocols meet the most rigorous global privacy standards for data processing and \'Right to be Forgotten\' requests.',
     },
     {
       title: 'Secure Data Segregation',
-      body: 'Your internal customer data is never mixed with 3rd party clouds or used to train public AI models.',
-    },
-    {
-      title: 'SOC2 Type II Security',
-      body: 'Every identity resolution happens within an encrypted, audited environment.',
+      body: 'Your proprietary customer data is never mixed with 3rd-party clouds or used to train public LLMs. Your data remains your competitive advantage.',
     },
   ];
 
@@ -448,10 +423,10 @@ function PrivacyFirstGovernanceSection() {
   return (
     <SplitSection
       title="Privacy-First Data Governance"
-      subtitle="Intelligence should never come at the expense of integrity. Enterprise-grade compliance at core."
+      subtitle="Intelligence must never compromise integrity. Dotti operates within a strictly audited, enterprise-grade compliance framework."
       features={features}
-      side="image-left"
-      background="muted"
+      side="image-right"
+      background="light"
       titleWeight={300}
     >
       {visualCard}
@@ -459,7 +434,7 @@ function PrivacyFirstGovernanceSection() {
   );
 }
 
-// SECTION 6: SEAMLESS CRM INTEGRATION
+// SECTION 5: FRICTIONLESS STACK INTEGRATION
 function CRMIntegrationSection() {
   const crmLogos = ['Salesforce', 'HubSpot', 'GoHighLevel', 'Zoho', 'Custom APIs'];
 
@@ -475,7 +450,7 @@ function CRMIntegrationSection() {
           }}
           data-aos="fade-up"
         >
-          Seamless CRM Integration
+          Frictionless Stack Integration
         </h2>
         <p
           className="text-base text-slate-600 max-w-2xl mx-auto font-sans leading-normal font-normal mb-8"
@@ -483,15 +458,61 @@ function CRMIntegrationSection() {
           data-aos="fade-up"
           data-aos-delay="100"
         >
-          Dotti does the busy work. Every attribute she discovers maps directly to correct fields in your stack.
+          Dotti does the technical heavy lifting, ensuring your core database is enriched without manual intervention.
         </p>
+      </div>
+      
+      {/* Two Text Blocks - Side by Side */}
+      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+        <div
+          className="text-center"
+          data-aos="fade-up"
+          data-aos-delay="150"
+        >
+          <h3
+            className="font-heading font-semibold text-slate-700 mb-2"
+            style={{
+              fontSize: '18px',
+              fontWeight: 600,
+            }}
+          >
+            Real-Time Data Injection
+          </h3>
+          <p
+            className="text-base text-slate-600 font-sans leading-normal font-normal"
+            style={{ lineHeight: '1.6', fontSize: '16px' }}
+          >
+            Dotti writes enriched attributes directly to your CRM, ensuring your sales team has the full financial context before they ever pick up the phone.
+          </p>
+        </div>
+        <div
+          className="text-center"
+          data-aos="fade-up"
+          data-aos-delay="200"
+        >
+          <h3
+            className="font-heading font-semibold text-slate-700 mb-2"
+            style={{
+              fontSize: '18px',
+              fontWeight: 600,
+            }}
+          >
+            Universal API Connectivity
+          </h3>
+          <p
+            className="text-base text-slate-600 font-sans leading-normal font-normal"
+            style={{ lineHeight: '1.6', fontSize: '16px' }}
+          >
+            Whether you use Salesforce, HubSpot, or a custom internal stack, Dotti integrates via native hooks to maintain a single source of truth.
+          </p>
+        </div>
       </div>
       
       {/* CRM Logo Pills */}
       <div
         className="flex flex-wrap justify-center items-center gap-4"
         data-aos="fade-up"
-        data-aos-delay="200"
+        data-aos-delay="250"
       >
         {crmLogos.map((crm, index) => (
           <div
@@ -508,6 +529,92 @@ function CRMIntegrationSection() {
         ))}
       </div>
     </PageSection>
+  );
+}
+
+// FOOTER CTA WITH TRUST LINE
+function FooterCTAWithTrustLine({
+  title,
+  subtitle,
+  primaryLabel,
+  primaryHref,
+  secondaryLabel,
+  secondaryHref,
+}: {
+  title: string;
+  subtitle: string;
+  primaryLabel: string;
+  primaryHref: string;
+  secondaryLabel: string;
+  secondaryHref: string;
+}) {
+  return (
+    <section
+      className="py-[100px] text-white"
+      style={{ background: '#20127E' }}
+    >
+      <div className="max-w-7xl mx-auto px-6 md:px-8 lg:px-12">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2
+            className="font-heading mb-4 text-center"
+            style={{
+              fontSize: 'clamp(44px, 5vw, 52px)',
+              fontWeight: 300,
+              color: '#FFFFFF',
+              lineHeight: '1.2',
+              letterSpacing: '-0.02em',
+            }}
+            data-aos="fade-up"
+          >
+            {title}
+          </h2>
+          <p
+            className="text-base text-white/90 mb-8 font-sans leading-normal font-light text-center"
+            style={{ lineHeight: '1.6', fontSize: '16px' }}
+            data-aos="fade-up"
+            data-aos-delay="100"
+          >
+            {subtitle}
+          </p>
+
+          <div
+            className="flex flex-col sm:flex-row gap-4 justify-center mb-6"
+            data-aos="fade-up"
+            data-aos-delay="200"
+          >
+            <Link href={primaryHref}>
+              <Button
+                variant="dark-primary"
+                size="default"
+              >
+                {primaryLabel}
+              </Button>
+            </Link>
+            <Link href={secondaryHref}>
+              <Button
+                variant="dark-secondary"
+                size="default"
+              >
+                {secondaryLabel}
+              </Button>
+            </Link>
+          </div>
+
+          {/* Trust Line */}
+          <p
+            className="text-center font-sans font-normal italic"
+            style={{
+              fontSize: '12px',
+              color: '#9CA3AF',
+            }}
+            data-aos="fade-up"
+            data-aos-delay="250"
+          >
+            SOC2 Type II Security — Every identity resolution happens within an encrypted, audited environment.
+          </p>
+        </div>
+      </div>
+    </section>
   );
 }
 

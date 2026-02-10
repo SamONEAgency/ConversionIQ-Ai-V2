@@ -2,7 +2,7 @@ import React from 'react';
 
 interface ProductHeroProps {
   eyebrow?: string;
-  title: string;
+  title: string | React.ReactNode;
   subtitle: string;
   videoLabel?: string;
   imageAlt?: string;
