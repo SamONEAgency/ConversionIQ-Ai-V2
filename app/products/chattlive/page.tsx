@@ -20,8 +20,9 @@
 import React from 'react';
 import { Navigation } from '@/components/Navigation';
 import { Footer } from '@/components/Footer';
+import { TestimonialBanner } from '@/components/content/TestimonialBanner';
 import { Button } from '@/components/ui/Button';
-import { Check, ArrowRight, Shield, Lock, Database, CheckCircle, MessageSquare, Smartphone, Globe, Mail, MessageCircle, Link2, Clock, Languages, TrendingDown, Users, Zap, Target, BookOpen, Eye, RefreshCw, Settings, Play, X } from 'lucide-react';
+import { Check, ArrowRight, Shield, Lock, Database, CheckCircle, MessageSquare, Smartphone, Globe, Mail, MessageCircle, Link2, Clock, Languages, TrendingDown, Zap, Target, BookOpen, Eye, RefreshCw, Settings, Play, X } from 'lucide-react';
 import Image from 'next/image';
 
 export default function ChattlivePage() {
@@ -399,87 +400,12 @@ function BrandVoiceSection() {
 // SECTION 4.5: TESTIMONIAL
 function TestimonialSection() {
   return (
-    <section 
-      className="py-[60px] md:py-[80px] lg:py-[100px]"
-      style={{ background: '#e6f5fa' }}
-    >
-      <div className="max-w-7xl mx-auto px-6 md:px-8 lg:px-12">
-        {/* Centered Card Container */}
-        <div className="max-w-[1040px] mx-auto">
-          <div 
-            className="bg-white rounded-2xl shadow-lg"
-            style={{
-              borderRadius: '20px',
-              boxShadow: '0px 4px 24px rgba(0, 0, 0, 0.08)',
-            }}
-            data-aos="fade-up"
-          >
-            <div 
-              className="w-full"
-              style={{
-                paddingTop: 'clamp(28px, 2.5vw, 40px)',
-                paddingBottom: 'clamp(28px, 2.5vw, 40px)',
-                paddingLeft: 'clamp(24px, 3vw, 64px)',
-                paddingRight: 'clamp(24px, 3vw, 64px)',
-              }}
-            >
-            {/* Quote */}
-            <p 
-              className="font-sans text-left mb-6"
-              style={{
-                fontSize: 'clamp(16px, 1.25vw, 20px)',
-                lineHeight: '1.6',
-                fontWeight: 400,
-                color: '#111827',
-                maxWidth: '90%',
-              }}
-            >
-              &ldquo;ConversionIQ eliminated the need for 10 full-time comment moderators and improved our CPA by 22% in under 90 days. The AI handles every comment with more precision than our team ever could.&rdquo;
-            </p>
-
-            {/* Author Row */}
-            <div 
-              className="flex items-center gap-4"
-              style={{ marginTop: '24px' }}
-            >
-              {/* Profile Picture Placeholder */}
-              <div 
-                className="rounded-full bg-slate-200 flex items-center justify-center flex-shrink-0"
-                style={{ 
-                  width: '48px',
-                  height: '48px',
-                  backgroundColor: '#e2e8f0'
-                }}
-              >
-                <Users className="w-6 h-6 text-slate-400" />
-              </div>
-              <div>
-                <p 
-                  className="font-sans font-semibold text-black mb-1"
-                  style={{ 
-                    fontSize: '18px',
-                    fontWeight: 600
-                  }}
-                >
-                  Michael Torres
-                </p>
-                <p 
-                  className="font-sans text-slate-500"
-                  style={{ 
-                    fontSize: '15px',
-                    fontWeight: 400,
-                    color: '#6B7280'
-                  }}
-                >
-                  VP of Digital Marketing
-                </p>
-              </div>
-            </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    <TestimonialBanner
+      quote="ConversionIQ eliminated the need for 10 full-time comment moderators and improved our CPA by 22% in under 90 days. The AI handles every comment with more precision than our team ever could."
+      name="Michael Torres"
+      role="VP of Digital Marketing"
+      backgroundVariant="neutral"
+    />
   );
 }
 

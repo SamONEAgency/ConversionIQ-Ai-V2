@@ -82,39 +82,70 @@ export default function CustomersPage() {
       <Navigation />
 
       {/* HERO SECTION */}
-      <PageSection background="light" padding="default">
-        <div className="text-center">
-          <h1
-            className="font-heading mb-4 text-center"
-            style={{
-              fontSize: 'clamp(48px, 5vw, 56px)',
-              fontWeight: 300,
-              color: '#1B1340',
-              lineHeight: '1.2',
-            }}
-            data-aos="fade-up"
-          >
-            Our Customers
-          </h1>
-          <p
-            className="text-center mx-auto font-sans font-normal"
-            style={{
-              fontSize: '18px',
-              color: '#4B5563',
-              lineHeight: '1.6',
-              maxWidth: '580px',
-            }}
-            data-aos="fade-up"
-            data-aos-delay="100"
-          >
-            See how marketing and revenue teams deploy autonomous agents to convert traffic at scale.
-          </p>
+      <section className="bg-white w-full" style={{ paddingTop: 'calc(72.75px + 25px)', paddingBottom: '25px' }}>
+        <div className="w-full px-[25px] mb-[25px]">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8" style={{ paddingTop: '96px', paddingBottom: '96px' }}>
+            <div className="text-center mx-auto" style={{ maxWidth: '720px' }}>
+              {/* Overline */}
+              <div 
+                className="text-xs uppercase tracking-wider text-slate-500 font-sans font-light mb-4"
+                style={{ fontSize: '12px', letterSpacing: '0.15em' }}
+                data-aos="fade-up"
+              >
+                RESOURCES
+              </div>
+              
+              {/* H1 */}
+              <h1 
+                className="text-4xl sm:text-5xl lg:text-5xl font-heading text-[#383299] mb-6"
+                style={{ 
+                  lineHeight: '1.1',
+                  fontWeight: 400
+                }}
+                data-aos="fade-up"
+                data-aos-delay="50"
+              >
+                Our Customers
+              </h1>
+
+              {/* Subcopy */}
+              <p 
+                className="text-base text-slate-600 font-sans font-light mx-auto" 
+                style={{ 
+                  lineHeight: '1.5',
+                  maxWidth: '640px'
+                }}
+                data-aos="fade-up"
+                data-aos-delay="100"
+              >
+                See how marketing and revenue teams deploy autonomous agents to convert traffic at scale.
+              </p>
+            </div>
+          </div>
         </div>
-      </PageSection>
+      </section>
 
       {/* FEATURED STORY CARD */}
       <PageSection background="light" padding="default">
         <FeaturedStoryCard />
+      </PageSection>
+
+      {/* MORE STORIES SECTION LABEL */}
+      <PageSection background="light" padding="default" className="py-8">
+        <div className="flex items-center justify-center gap-4 max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="flex-1 h-px bg-[#E5E7EB]"></div>
+          <span
+            className="font-sans font-medium uppercase tracking-wider"
+            style={{
+              fontSize: '14px',
+              letterSpacing: '2px',
+              color: '#9CA3AF',
+            }}
+          >
+            More Stories
+          </span>
+          <div className="flex-1 h-px bg-[#E5E7EB]"></div>
+        </div>
       </PageSection>
 
       {/* STORY GRID */}
@@ -155,13 +186,20 @@ function FeaturedStoryCard() {
       <div className="flex flex-col lg:flex-row">
         {/* Image Placeholder - Left (60%) */}
         <div
-          className="w-full lg:w-[60%] bg-gradient-to-br from-[#383299]/20 to-[#ef2d60]/20 flex items-center justify-center text-white/40 font-sans text-sm"
+          className="w-full lg:w-[60%] bg-gradient-to-br from-[#383299]/20 to-[#ef2d60]/20 flex items-center justify-center text-white/40 font-sans text-sm relative"
           style={{
             minHeight: '400px',
           }}
         >
+          {/* Gradient Overlay - dark navy → transparent from right to left */}
+          <div
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              background: 'linear-gradient(to left, rgba(27, 19, 64, 0.3) 0%, transparent 100%)',
+            }}
+          />
           {/* TODO: Replace placeholder with featured story image */}
-          Featured Story Image
+          <span className="relative z-10">Featured Story Image</span>
         </div>
 
         {/* Text Content - Right (40%) */}
@@ -170,7 +208,7 @@ function FeaturedStoryCard() {
           <div
             className="inline-block px-3 py-1 rounded-full mb-6"
             style={{
-              background: '#14B8A6',
+              background: '#ef2d60',
               fontSize: '12px',
               fontWeight: 600,
               textTransform: 'uppercase',
@@ -186,7 +224,7 @@ function FeaturedStoryCard() {
             <div
               className="text-sm font-sans font-medium mb-2"
               style={{
-                color: '#14B8A6',
+                color: '#ef2d60',
                 fontSize: '12px',
               }}
             >
@@ -231,7 +269,7 @@ function FeaturedStoryCard() {
             href="/customers/major-resort-brand"
             className="font-sans font-medium inline-flex items-center"
             style={{
-              color: '#14B8A6',
+              color: '#ef2d60',
               fontSize: '16px',
             }}
           >
@@ -247,19 +285,19 @@ function FeaturedStoryCard() {
 function StoryCard({ story, index }: { story: Story; index: number }) {
   return (
     <div
-      className="bg-white border border-[#E5E7EB] rounded-xl overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+      className="bg-white border border-[#E5E7EB] rounded-xl overflow-hidden transition-all duration-300 hover:scale-[1.02] hover:shadow-xl"
       style={{
         borderRadius: '12px',
         boxShadow: '0 1px 3px rgba(0, 0, 0, 0.05)',
       }}
       data-aos="fade-up"
-      data-aos-delay={200 + index * 100}
+      data-aos-delay={200 + index * 150}
     >
-      {/* Image Placeholder */}
+      {/* Image Placeholder - 3:2 ratio with gradient */}
       <div
-        className="w-full bg-gradient-to-br from-[#F3F4F6] to-[#E5E7EB] flex items-center justify-center text-slate-400 font-sans text-sm"
+        className="w-full bg-gradient-to-br from-[#383299]/10 via-[#1B1340]/5 to-[#E5E7EB] flex items-center justify-center text-slate-400 font-sans text-sm"
         style={{
-          aspectRatio: '1 / 1',
+          aspectRatio: '3 / 2',
         }}
       >
         {/* TODO: Replace placeholder with story image */}
@@ -272,7 +310,7 @@ function StoryCard({ story, index }: { story: Story; index: number }) {
         <div
           className="inline-block px-3 py-1 rounded-full mb-4"
           style={{
-            background: '#14B8A6',
+            background: '#ef2d60',
             fontSize: '12px',
             fontWeight: 600,
             textTransform: 'uppercase',
@@ -333,7 +371,7 @@ function StoryCard({ story, index }: { story: Story; index: number }) {
           href={`/customers/${story.category.toLowerCase().replace(/\s+/g, '-').replace(/&/g, 'and')}`}
           className="font-sans font-medium inline-flex items-center"
           style={{
-            color: '#14B8A6',
+            color: '#ef2d60',
             fontSize: '16px',
           }}
         >

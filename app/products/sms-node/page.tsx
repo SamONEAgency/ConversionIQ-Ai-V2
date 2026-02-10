@@ -240,7 +240,7 @@ function TestimonialSection() {
       quote="ConversionIQ eliminated the need for 10 full-time comment moderators and improved our CPA by 22% in under 90 days. The AI handles every comment with more precision than our team ever could."
       name="Michael Torres"
       role="VP of Digital Marketing"
-      backgroundVariant="blue"
+      backgroundVariant="neutral"
     />
   );
 }

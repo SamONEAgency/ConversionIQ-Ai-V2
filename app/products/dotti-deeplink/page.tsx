@@ -175,15 +175,15 @@ function ThreePillarsSection() {
   const pillars: FeatureItem[] = [
     {
       title: 'DeepLink™ Enrichment',
-      body: 'Instant access to 2,000+ verified 3rd party attributes: net worth, credit intent, household composition, and lifestyle affinities.',
+      body: 'Instant access to 2,000+ verified attributes: net worth, credit intent, and lifestyle affinities.',
     },
     {
       title: 'Historical Memory',
-      body: 'Auto cross-references your internal database to recognize returning buyers and past interactions instantly.',
+      body: 'Auto cross-references your database to recognize returning buyers and past interactions instantly.',
     },
     {
       title: 'Digital Body Language',
-      body: 'Track real-time user paths and pixel data to understand the &apos;Why&apos; behind the visit and identify high-intent behaviors.',
+      body: 'Track real-time user paths to understand the &apos;Why&apos; behind visits and identify high-intent behaviors.',
     },
   ];
 
@@ -202,7 +202,23 @@ function ThreePillarsSection() {
           The Three Pillars of Dotti Intelligence
         </h2>
       </div>
-      <FeatureList items={pillars} layout="centered" />
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        {pillars.map((pillar, index) => (
+          <div
+            key={index}
+            className="text-center"
+            data-aos="fade-up"
+            data-aos-delay={200 + (index * 100)}
+          >
+            <h3 className="text-base font-heading font-medium text-slate-700 mb-2" style={{ fontSize: '16px', fontWeight: 600 }}>
+              {pillar.title}
+            </h3>
+            <p className="text-sm text-slate-600 leading-normal font-sans font-normal" style={{ fontSize: '16px', lineHeight: '1.6' }}>
+              {pillar.body}
+            </p>
+          </div>
+        ))}
+      </div>
     </PageSection>
   );
 }

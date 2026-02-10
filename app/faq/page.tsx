@@ -69,35 +69,48 @@ export default function FAQPage() {
       <Navigation />
       
       {/* HERO SECTION */}
-      <PageSection background="light" padding="default">
-        <div className="text-center">
-          <h1
-            className="font-heading mb-4 text-center"
-            style={{
-              fontSize: 'clamp(48px, 5vw, 56px)',
-              fontWeight: 300,
-              color: '#1B1340',
-              lineHeight: '1.2',
-            }}
-            data-aos="fade-up"
-          >
-            Frequently Asked Questions
-          </h1>
-          <p
-            className="text-center mx-auto font-sans font-normal"
-            style={{
-              fontSize: '18px',
-              color: '#4B5563',
-              lineHeight: '1.6',
-              maxWidth: '640px',
-            }}
-            data-aos="fade-up"
-            data-aos-delay="100"
-          >
-            Everything you need to know about deploying autonomous intelligence, managing data security, and scaling your revenue engine.
-          </p>
+      <section className="bg-white w-full" style={{ paddingTop: 'calc(72.75px + 25px)', paddingBottom: '25px' }}>
+        <div className="w-full px-[25px] mb-[25px]">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8" style={{ paddingTop: '96px', paddingBottom: '96px' }}>
+            <div className="text-center mx-auto" style={{ maxWidth: '720px' }}>
+              {/* Overline */}
+              <div 
+                className="text-xs uppercase tracking-wider text-slate-500 font-sans font-light mb-4"
+                style={{ fontSize: '12px', letterSpacing: '0.15em' }}
+                data-aos="fade-up"
+              >
+                RESOURCES
+              </div>
+              
+              {/* H1 */}
+              <h1 
+                className="text-4xl sm:text-5xl lg:text-5xl font-heading text-[#383299] mb-6"
+                style={{ 
+                  lineHeight: '1.1',
+                  fontWeight: 400
+                }}
+                data-aos="fade-up"
+                data-aos-delay="50"
+              >
+                Frequently Asked Questions
+              </h1>
+
+              {/* Subcopy */}
+              <p 
+                className="text-base text-slate-600 font-sans font-light mx-auto" 
+                style={{ 
+                  lineHeight: '1.5',
+                  maxWidth: '640px'
+                }}
+                data-aos="fade-up"
+                data-aos-delay="100"
+              >
+                Everything you need to know about deploying autonomous intelligence and scaling your revenue engine.
+              </p>
+            </div>
+          </div>
         </div>
-      </PageSection>
+      </section>
 
       {/* CATEGORY NAVIGATION PILLS */}
       <PageSection background="light" padding="small">

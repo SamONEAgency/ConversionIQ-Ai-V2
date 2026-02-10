@@ -34,6 +34,7 @@ interface CaseStudy {
     quote: string;
     name: string;
     role: string;
+    company?: string;
   };
 }
 
@@ -61,9 +62,10 @@ const caseStudies: Record<string, CaseStudy> = {
     ],
     testimonial: {
       quote:
-        'ConversionIQ eliminated the need for 10 full-time comment moderators and improved our CPA by 22% in under 90 days.',
-      name: 'VP of Digital Marketing',
-      role: 'Major Hospitality Brand',
+        'ConversionIQ eliminated the need for 10 full-time comment moderators and improved our CPA by 22% in under 90 days. The AI handles every comment with more precision than our team ever could.',
+      name: 'Michael Torres',
+      role: 'VP of Digital Marketing',
+      company: 'Major Hospitality Brand',
     },
   },
 };
@@ -135,38 +137,38 @@ export default function CustomerStoryPage({ params }: { params: { slug: string }
       </div>
 
       {/* HERO CONTENT */}
-      <PageSection background="light" padding="default">
-        <div className="mb-8">
-          {/* Teal Pill Badge */}
-          <div
-            className="inline-block px-3 py-1 rounded-full mb-6"
-            style={{
-              background: '#14B8A6',
-              fontSize: '12px',
-              fontWeight: 600,
-              textTransform: 'uppercase',
-              letterSpacing: '0.05em',
-              color: '#FFFFFF',
-            }}
-          >
-            {caseStudy.category}
+      <section className="bg-white w-full" style={{ paddingTop: 'calc(72.75px + 25px)', paddingBottom: '25px' }}>
+        <div className="w-full px-[25px] mb-[25px]">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8" style={{ paddingTop: '96px', paddingBottom: '96px' }}>
+            <div className="text-center mx-auto" style={{ maxWidth: '720px' }}>
+              {/* Overline */}
+              <div 
+                className="text-xs uppercase tracking-wider text-slate-500 font-sans font-light mb-4"
+                style={{ fontSize: '12px', letterSpacing: '0.15em' }}
+                data-aos="fade-up"
+              >
+                {caseStudy.category}
+              </div>
+              
+              {/* H1 */}
+              <h1 
+                className="text-4xl sm:text-5xl lg:text-5xl font-heading text-[#383299] mb-6"
+                style={{ 
+                  lineHeight: '1.1',
+                  fontWeight: 400
+                }}
+                data-aos="fade-up"
+                data-aos-delay="50"
+              >
+                {caseStudy.title}
+              </h1>
+            </div>
           </div>
-
-          {/* H1 */}
-          <h1
-            className="font-heading font-semibold text-[#1B1340]"
-            style={{
-              fontSize: 'clamp(36px, 4vw, 44px)',
-              fontWeight: 600,
-              lineHeight: '1.3',
-            }}
-            data-aos="fade-up"
-          >
-            {caseStudy.title}
-          </h1>
         </div>
+      </section>
 
-        {/* STAT BAR */}
+      {/* STAT BAR */}
+      <PageSection background="light" padding="default">
         <StatBar stats={caseStudy.stats} />
       </PageSection>
 
@@ -249,7 +251,8 @@ export default function CustomerStoryPage({ params }: { params: { slug: string }
         quote={caseStudy.testimonial.quote}
         name={caseStudy.testimonial.name}
         role={caseStudy.testimonial.role}
-        backgroundVariant="blue"
+        company={caseStudy.testimonial.company}
+        backgroundVariant="neutral"
       />
 
       {/* RELATED STORIES */}

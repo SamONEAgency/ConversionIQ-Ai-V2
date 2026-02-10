@@ -60,69 +60,55 @@ export default function WebinarsPage() {
       <Navigation />
 
       {/* HERO SECTION */}
-      <PageSection background="light" padding="default">
-        <div className="text-center max-w-4xl mx-auto">
-          {/* Kicker */}
-          <div
-            className="text-xs uppercase tracking-wider text-slate-500 font-sans font-light mb-4"
-            style={{ fontSize: '12px', letterSpacing: '0.15em' }}
-            data-aos="fade-up"
-          >
-            RESOURCES
+      <section className="bg-white w-full" style={{ paddingTop: 'calc(72.75px + 25px)', paddingBottom: '25px' }}>
+        {/* Text Section */}
+        <div className="w-full px-[25px] mb-[25px]">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8" style={{ paddingTop: '96px', paddingBottom: '96px' }}>
+            <div className="text-center mx-auto" style={{ maxWidth: '720px' }}>
+              {/* Overline */}
+              <div
+                className="text-xs uppercase tracking-wider text-slate-500 font-sans font-light mb-4"
+                style={{ fontSize: '12px', letterSpacing: '0.15em' }}
+                data-aos="fade-up"
+              >
+                RESOURCES
+              </div>
+
+              {/* H1 */}
+              <h1
+                className="text-4xl sm:text-5xl lg:text-5xl font-heading text-[#383299] mb-6"
+                style={{
+                  lineHeight: '1.1',
+                  fontWeight: 400
+                }}
+                data-aos="fade-up"
+                data-aos-delay="50"
+              >
+                Live & On-Demand Webinars
+              </h1>
+
+              {/* Subcopy */}
+              <p
+                className="text-base text-slate-600 font-sans font-light mx-auto"
+                style={{
+                  lineHeight: '1.5',
+                  maxWidth: '640px'
+                }}
+                data-aos="fade-up"
+                data-aos-delay="100"
+              >
+                See how autonomous agents are deployed with real screens, metrics, and live Q&A.
+              </p>
+            </div>
           </div>
-
-          {/* H1 */}
-          <h1
-            className="font-heading mb-6 text-center"
-            style={{
-              fontSize: 'clamp(48px, 5vw, 56px)',
-              fontWeight: 300,
-              color: '#1B1340',
-              lineHeight: '1.2',
-            }}
-            data-aos="fade-up"
-            data-aos-delay="50"
-          >
-            Live & On-Demand Webinars
-          </h1>
-
-          {/* Subheadline */}
-          <p
-            className="font-heading mb-6 text-center mx-auto"
-            style={{
-              fontSize: 'clamp(24px, 2.5vw, 28px)',
-              fontWeight: 300,
-              color: '#1B1340',
-              lineHeight: '1.4',
-              maxWidth: '800px',
-            }}
-            data-aos="fade-up"
-            data-aos-delay="100"
-          >
-            See exactly how autonomous agents are deployed — with real screens, real metrics, and live Q&A.
-          </p>
-
-          {/* Body */}
-          <p
-            className="font-sans font-normal text-[#4B5563] text-center mx-auto"
-            style={{
-              fontSize: '18px',
-              lineHeight: '1.6',
-              maxWidth: '900px',
-            }}
-            data-aos="fade-up"
-            data-aos-delay="150"
-          >
-            Join upcoming live sessions with the ConversionIQ team and customer leaders, or watch past episodes on demand. Every session is built around practical deployment examples and measurable outcomes — not slide decks.
-          </p>
         </div>
-      </PageSection>
+      </section>
 
       {/* UPCOMING SESSIONS */}
-      <PageSection background="muted" padding="default">
-        <div className="max-w-4xl mx-auto mb-12">
+      <PageSection background="light" padding="default" className="bg-[#E6F5FA]">
+        <div className="mb-12">
           <h2
-            className="font-heading mb-8 text-left"
+            className="font-heading mb-4 text-left"
             style={{
               fontSize: 'clamp(36px, 3vw, 40px)',
               fontWeight: 300,
@@ -132,9 +118,20 @@ export default function WebinarsPage() {
           >
             Upcoming Live Sessions
           </h2>
+          <p
+            className="font-sans font-normal text-[#4B5563]"
+            style={{
+              fontSize: '16px',
+              lineHeight: '1.6',
+            }}
+            data-aos="fade-up"
+            data-aos-delay="100"
+          >
+            Join live sessions or watch on-demand episodes built around practical deployment examples and measurable outcomes.
+          </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {upcomingSessions.map((session, index) => (
             <UpcomingSessionCard key={index} session={session} index={index} />
           ))}
@@ -142,8 +139,8 @@ export default function WebinarsPage() {
       </PageSection>
 
       {/* ON-DEMAND LIBRARY */}
-      <PageSection background="light" padding="default">
-        <div className="max-w-4xl mx-auto mb-12">
+      <PageSection background="light" padding="default" className="bg-[#E6F5FA]">
+        <div className="mb-12">
           <h2
             className="font-heading mb-4 text-left"
             style={{
@@ -168,7 +165,7 @@ export default function WebinarsPage() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {onDemandSessions.map((session, index) => (
             <OnDemandCard key={index} session={session} index={index} />
           ))}
@@ -219,7 +216,7 @@ function UpcomingSessionCard({
       <div
         className="inline-block px-3 py-1 rounded-full mb-4"
         style={{
-          background: '#14B8A6',
+          background: '#00B4D8',
           fontSize: '12px',
           fontWeight: 600,
           textTransform: 'uppercase',
@@ -244,9 +241,9 @@ function UpcomingSessionCard({
 
       {/* Date */}
       <div className="flex items-center gap-2 mb-4">
-        <Calendar size={16} className="text-[#6B7280]" />
+        <Calendar size={16} className="text-[#00B4D8]" />
         <span
-          className="font-sans font-medium text-[#6B7280]"
+          className="font-sans font-medium text-[#00B4D8]"
           style={{
             fontSize: '14px',
           }}
@@ -269,7 +266,7 @@ function UpcomingSessionCard({
       {/* CTA */}
       <Link
         href={session.ctaHref}
-        className="font-sans font-medium inline-flex items-center text-[#14B8A6] hover:text-[#0D9488] transition-colors"
+        className="font-sans font-medium inline-flex items-center text-[#00B4D8] hover:text-[#0096C7] transition-colors"
         style={{
           fontSize: '16px',
         }}
@@ -304,7 +301,7 @@ function OnDemandCard({
     >
       {/* Video Thumbnail */}
       <div className="relative" style={{ aspectRatio: '16 / 9' }}>
-        <div className="w-full h-full bg-gradient-to-br from-[#F3F4F6] to-[#E5E7EB] flex items-center justify-center">
+        <div className="w-full h-full bg-gradient-to-br from-[#E6F5FA] to-[#B3E5FC] flex items-center justify-center">
           {/* Play Button Overlay */}
           <div className="absolute inset-0 flex items-center justify-center">
             <div
@@ -314,7 +311,7 @@ function OnDemandCard({
                 height: '64px',
               }}
             >
-              <Play className="text-[#1B1340]" size={24} fill="#1B1340" />
+              <Play className="text-[#00B4D8]" size={24} fill="#00B4D8" />
             </div>
           </div>
           {/* Duration Badge */}
@@ -336,12 +333,12 @@ function OnDemandCard({
         <div
           className="inline-block px-3 py-1 rounded-full mb-3"
           style={{
-            background: '#F3F4F6',
+            background: '#E6F5FA',
             fontSize: '12px',
             fontWeight: 600,
             textTransform: 'uppercase',
             letterSpacing: '0.05em',
-            color: '#6B7280',
+            color: '#00B4D8',
           }}
         >
           {session.tag}
@@ -362,7 +359,7 @@ function OnDemandCard({
         {/* CTA */}
         <Link
           href="/request-a-demo"
-          className="font-sans font-medium inline-flex items-center text-[#14B8A6] hover:text-[#0D9488] transition-colors"
+          className="font-sans font-medium inline-flex items-center text-[#00B4D8] hover:text-[#0096C7] transition-colors"
           style={{
             fontSize: '16px',
           }}
