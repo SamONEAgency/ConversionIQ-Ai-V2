@@ -1,9 +1,11 @@
 'use client';
 
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import Image from 'next/image';
 import { Button } from './ui/Button';
-import { Mail, Facebook, Instagram, Play, X } from 'lucide-react';
+import { Navigation } from './Navigation';
+import { Mail } from 'lucide-react';
+import ConversionIQChatMockup from '@/components/ui/ConversionIQChatMockup';
 
 // Rotating word component with gradient styling
 function RotatingWord() {
@@ -58,10 +60,7 @@ function RotatingWord() {
         className="inline-block font-heading"
         style={{
           fontWeight: 500,
-          background: 'linear-gradient(to right, #383299, #ef2d60)',
-          WebkitBackgroundClip: 'text',
-          backgroundClip: 'text',
-          color: 'transparent',
+          color: '#FFFFFF',
           opacity: isVisible ? 1 : 0,
           transform: isVisible ? 'translateY(0)' : 'translateY(-8px)',
           transition: prefersReducedMotion 
@@ -77,17 +76,16 @@ function RotatingWord() {
 
 export function Hero() {
   const [email, setEmail] = useState('');
-  const [isVideoFullscreen, setIsVideoFullscreen] = useState(false);
-  const backgroundVideoRef = useRef<HTMLVideoElement>(null);
+  const [activeSceneId, setActiveSceneId] = useState('webchat');
+  const videoRef = useRef<HTMLVideoElement>(null);
 
-  useEffect(() => {
-    // Ensure background video plays
-    if (backgroundVideoRef.current) {
-      backgroundVideoRef.current.play().catch((error) => {
-        console.error('Error playing background video:', error);
-      });
-    }
-  }, []);
+  // Map scene IDs to video files based on person names
+  const sceneVideoMap: Record<string, string> = {
+    'webchat': '/Videos/Marcus_Vacation.mp4',  // Marcus
+    'sms': '/Videos/Sarah_Raybans.mp4',        // Sarah
+    'social': '/Videos/Jessica_Demo.mp4',      // Jessica
+    'dotti': '/Videos/David_Golfer.mp4',       // David
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -95,54 +93,156 @@ export function Hero() {
     console.log('Email submitted:', email);
   };
 
-  return (
-    <section className="bg-white w-full" style={{ paddingTop: 'calc(72.75px + 25px)', paddingBottom: '25px', minHeight: 'calc(100vh - 50px)' }}>
-      <div className="w-full px-[25px]">
-        {/* Rounded Card Container */}
-        <div className="rounded-3xl overflow-hidden shadow-2xl border border-slate-200 bg-white relative w-full" style={{ height: 'calc(100vh - 72.75px - 50px)' }}>
-          {/* Background Video */}
-          <video
-            ref={backgroundVideoRef}
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="auto"
-            className="absolute inset-0 w-full h-full object-cover opacity-65 z-0"
-            onError={(e) => console.error('Background video error:', e)}
-            onLoadedData={() => console.log('Background video loaded')}
-          >
-            <source src="/Videos/GettyImages-2178794980.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
-          
-          {/* Overlay to ensure text readability */}
-          <div className="absolute inset-0 bg-white/10 z-[1]"></div>
-          
-          {/* Content Overlay */}
-          <div className="relative z-10 h-full flex items-center">
-            <div className="w-full max-w-7xl mx-auto px-6 lg:px-8 py-[8.64px]">
-              <div className="flex flex-col-reverse lg:flex-row items-center lg:justify-between lg:gap-[8.64px]">
-                {/* LEFT SIDE: Headline, Subtext, Email Input + CTA Button */}
-                <div className="text-left space-y-[22px] w-full lg:w-auto mb-[12.96px] lg:mb-0">
-                  <h1 
-                    className="text-4xl sm:text-5xl lg:text-5xl font-heading text-[#383299] max-w-4xl"
-                    style={{ 
-                      lineHeight: '1.1',
-                      fontWeight: 300
-                    }}
-                  >
-                    <span style={{ fontWeight: 300 }}>AI that gets people to</span>
-                    <br />
-                    <RotatingWord />
-                  </h1>
+  const handleSceneChange = (sceneId: string) => {
+    setActiveSceneId(sceneId);
+  };
 
-              <p className="text-base text-slate-600 font-sans max-w-4xl mx-auto font-light" style={{ lineHeight: '1.45' }}>
+  useEffect(() => {
+    // Auto-play video on mount and when scene changes
+    if (videoRef.current && typeof window !== 'undefined') {
+      const video = videoRef.current;
+      const videoSrc = sceneVideoMap[activeSceneId] || '/Videos/Hero video.mp4';
+      
+      // Get current src without origin
+      const currentSrc = video.src.replace(window.location.origin, '');
+      
+      // Only change source if it's different
+      if (currentSrc !== videoSrc) {
+        video.src = videoSrc;
+        video.load();
+        video.play().catch((error) => {
+          console.error('Error autoplaying video:', error);
+        });
+      }
+    }
+  }, [activeSceneId]);
+
+  const handleVideoEnded = useCallback(() => {
+    // When video ends, trigger scene advance in chat mockup
+    if (typeof window !== 'undefined' && (window as any).__advanceChatScene) {
+      (window as any).__advanceChatScene();
+    }
+  }, []);
+
+  return (
+    <>
+      {/* Navigation - Outside Hero card to ensure fixed positioning works */}
+      <Navigation />
+      
+      <section 
+        className="w-full relative"
+        style={{ 
+          background: '#FFFFFF',
+          padding: '25px',
+          minHeight: '100vh',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        {/* Main Card - Fits Almost Entire Viewport */}
+        <div 
+          className="rounded-2xl md:rounded-[24px] w-full relative overflow-visible"
+          style={{
+            width: 'calc(100vw - 50px)',
+            minHeight: 'calc(100vh - 50px)',
+            boxShadow: '0 8px 32px rgba(27, 19, 64, 0.08)',
+            opacity: 0,
+            transform: 'scale(0.98)',
+            animation: 'fadeInScale 600ms ease 100ms forwards',
+            position: 'relative',
+          }}
+        >
+          {/* Video Background */}
+          <video
+            ref={videoRef}
+            src={sceneVideoMap[activeSceneId] || '/Videos/Hero video.mp4'}
+            className="absolute inset-0 w-full h-full object-cover"
+            style={{
+              borderRadius: '24px',
+            }}
+            muted
+            playsInline
+            autoPlay
+            onEnded={handleVideoEnded}
+          />
+        
+        {/* Darkening Overlay - Left side dark, feathers to transparent on right */}
+        <div 
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            borderRadius: '24px',
+            background: 'linear-gradient(to right, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.3) 30%, rgba(0, 0, 0, 0.1) 60%, transparent 100%)',
+            zIndex: 1,
+          }}
+        />
+        
+        {/* Hero Inner Container - Two Column Layout with Max-Width Container */}
+        <div 
+          className="w-full max-w-7xl mx-auto px-6 md:px-12 lg:px-20 relative z-10"
+          style={{
+            minHeight: 'calc(100vh - 112px)',
+          }}
+        >
+          <div 
+            className="hero-inner w-full"
+            style={{
+              display: 'flex',
+              minHeight: 'calc(100vh - 112px)',
+              position: 'relative',
+            }}
+          >
+            {/* Text Column - Left Side */}
+            <div 
+              className="hero-text-col flex-1 flex flex-col justify-center relative z-10"
+              style={{
+                padding: '60px 0 60px 0',
+              }}
+            >
+            <div 
+              className="text-left space-y-6 w-full"
+              style={{
+                opacity: 0,
+                transform: 'translateY(20px)',
+                animation: 'fadeInUp 500ms ease 300ms forwards',
+              }}
+            >
+              <h1 
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl font-heading max-w-4xl"
+                style={{ 
+                  lineHeight: '1.1',
+                  fontWeight: 300,
+                  color: '#FFFFFF'
+                }}
+              >
+                <span style={{ fontWeight: 300 }}>AI that gets people to</span>
+                <br />
+                <RotatingWord />
+              </h1>
+
+              <p 
+                className="text-base font-sans max-w-4xl font-light"
+                style={{ 
+                  lineHeight: '1.45',
+                  color: 'rgba(255,255,255,0.7)',
+                  opacity: 0,
+                  transform: 'translateY(20px)',
+                  animation: 'fadeInUp 500ms ease 450ms forwards',
+                }}
+              >
                 Deploy a coordinated system of AI agents in minutes that identify,<br />
                 engage, and close prospects across every channel.
               </p>
 
-              <form onSubmit={handleSubmit} className="w-full max-w-md">
+              <form 
+                onSubmit={handleSubmit} 
+                className="w-full max-w-md"
+                style={{
+                  opacity: 0,
+                  transform: 'translateY(20px)',
+                  animation: 'fadeInUp 500ms ease 600ms forwards',
+                }}
+              >
                 <div className="relative flex items-center">
                   <Mail className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-400 z-10" />
                   <input
@@ -163,72 +263,34 @@ export function Hero() {
                   </Button>
                 </div>
               </form>
-            </div>
 
-                {/* RIGHT SIDE: Product Video Card */}
-                <div className="w-full lg:w-[550px] mb-[12.96px] lg:mb-0">
-                  <div 
-                    className="shadow-lg rounded-xl overflow-hidden bg-white relative group cursor-pointer" 
-                    style={{ aspectRatio: '16/9', minHeight: '300px' }}
-                    onClick={() => setIsVideoFullscreen(true)}
-                  >
-                    <iframe
-                      src="https://www.youtube.com/embed/0yk1mbj5ZhY?autoplay=1&mute=1&loop=1&playlist=0yk1mbj5ZhY&controls=0&modestbranding=1&rel=0&playsinline=1"
-                      className="w-full h-full rounded-xl"
-                      style={{ minHeight: '300px', border: 'none' }}
-                      allow="autoplay; encrypted-media"
-                      allowFullScreen
-                      title="ConversionIQ Hero Video"
-                    />
-                    {/* Play Button Overlay */}
-                    <div className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/30 transition-colors rounded-xl">
-                      <div className="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center shadow-lg group-hover:bg-white group-hover:scale-110 transition-transform">
-                        <Play className="w-8 h-8 text-[#383299] ml-1" fill="#383299" />
-                      </div>
-                    </div>
-                  </div>
-                  
-                  {/* Fullscreen Video Modal */}
-                  {isVideoFullscreen && (
-                    <div 
-                      className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4"
-                      onClick={() => setIsVideoFullscreen(false)}
-                    >
-                      <div 
-                        className="relative w-full max-w-6xl aspect-video"
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        {/* Close Button */}
-                        <button
-                          onClick={() => setIsVideoFullscreen(false)}
-                          className="absolute -top-12 right-0 text-white hover:text-gray-300 transition-colors"
-                          aria-label="Close video"
-                        >
-                          <X className="w-8 h-8" />
-                        </button>
-                        {/* Fullscreen Video */}
-                        <iframe
-                          src="https://www.youtube.com/embed/0yk1mbj5ZhY?autoplay=1&mute=0&controls=1&modestbranding=1&rel=0"
-                          className="w-full h-full rounded-lg"
-                          style={{ border: 'none' }}
-                          allow="autoplay; encrypted-media; fullscreen"
-                          allowFullScreen
-                          title="ConversionIQ Hero Video"
-                        />
-                      </div>
-                    </div>
-                  )}
-                  
-                  {/* Meta Approved App & Patent-Pending Text - Matching subtitle font style */}
-                  <p className="mt-4 text-center text-slate-700 text-[15.4px] font-sans font-light" style={{ lineHeight: '1.45' }}>
-                    Meta Approved App | Patent-Pending Technology
-                  </p>
-                </div>
+            </div>
+          </div>
+
+            {/* Chat Column - Right Side, Bottom Anchored */}
+            <div 
+              className="hero-chat-col flex-1 flex flex-col justify-end items-end relative z-10"
+              style={{
+                padding: '0',
+              }}
+            >
+              <div 
+                className="hero-chat-wrapper pointer-events-auto"
+                style={{
+                  position: 'absolute',
+                  bottom: '-90px',
+                  right: '0px', // Will be overridden by responsive classes
+                  width: '440px',
+                  zIndex: 10,
+                }}
+              >
+                <ConversionIQChatMockup onSceneChange={handleSceneChange} onVideoEnd={handleVideoEnded} />
               </div>
             </div>
           </div>
         </div>
       </div>
     </section>
+    </>
   );
 }

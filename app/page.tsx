@@ -746,9 +746,7 @@ function SectionWrapper({ children, className }: { children: React.ReactNode; cl
 export default function Home() {
   return (
     <div className="min-h-screen bg-white">
-      <Navigation />
-      
-      {/* HERO SECTION */}
+      {/* HERO SECTION (includes Navigation) */}
       <Hero />
       
       {/* TRUSTED BY CAROUSEL */}
